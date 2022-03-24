@@ -18,7 +18,7 @@ import {
   PutUsersParam,
   UpdateCreateEpochParam,
   IApiNominee,
-  IApiFullCircle,
+  IApiFullCircle, NominateUserParam,
 } from 'types';
 
 axios.defaults.baseURL = API_URL;
@@ -194,6 +194,16 @@ export class APIService {
   ): Promise<IApiNominee> => {
     const response = await this.axios.post(`/v2/${circleId}/vouch`, {
       data: JSON.stringify({ nominee_id }),
+    });
+    return response.data;
+  };
+
+  nominateUser = async (
+    circleId: number,
+    params: NominateUserParam
+  ): Promise<IApiNominee> => {
+    const response = await this.axios.post(`/v2/${circleId}/nominees`, {
+      data: JSON.stringify(params),
     });
     return response.data;
   };

@@ -244,7 +244,7 @@ export const createNominee = async (
   circleId: number,
   params: NominateUserParam
 ) => {
-  const { createNominee } = await client.mutate({
+  const {createNominee} = await client.mutate({
     createNominee: [
       {
         payload: {
@@ -258,4 +258,20 @@ export const createNominee = async (
     ],
   });
   return createNominee;
+};
+
+export const vouchUser = async (nomineeId: number) => {
+  const { vouch } = await client.mutate({
+    vouch: [
+      {
+        payload: {
+          nominee_id: nomineeId,
+        },
+      },
+      {
+        id: true,
+      },
+    ],
+  });
+  return vouch;
 };
