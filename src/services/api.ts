@@ -17,8 +17,7 @@ import {
   PutCirclesParam,
   PutUsersParam,
   UpdateCreateEpochParam,
-  IApiNominee,
-  IApiFullCircle, NominateUserParam,
+  IApiFullCircle,
 } from 'types';
 
 axios.defaults.baseURL = API_URL;
@@ -185,26 +184,6 @@ export class APIService {
 
   getDiscordWebhook = async (circleId: number): Promise<any> => {
     const response = await this.axios.get(`/v2/${circleId}/admin/webhook`);
-    return response.data;
-  };
-
-  vouchUser = async (
-    circleId: number,
-    nominee_id: number
-  ): Promise<IApiNominee> => {
-    const response = await this.axios.post(`/v2/${circleId}/vouch`, {
-      data: JSON.stringify({ nominee_id }),
-    });
-    return response.data;
-  };
-
-  nominateUser = async (
-    circleId: number,
-    params: NominateUserParam
-  ): Promise<IApiNominee> => {
-    const response = await this.axios.post(`/v2/${circleId}/nominees`, {
-      data: JSON.stringify(params),
-    });
     return response.data;
   };
 
